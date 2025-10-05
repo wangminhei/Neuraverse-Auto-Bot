@@ -1,0 +1,20 @@
+{
+  "name": "neura-bot",
+  "version": "1.0.0",
+  "description": "Auto Bot for Neura Airdrop",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "vikitoshi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1",
+    "https-proxy-agent": "^7.0.5",
+    "siwe": "^2.3.2",
+    "uuid": "^10.0.0"
+  }
+}
