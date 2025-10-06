@@ -23,8 +23,8 @@ Tệp proxies.txt (tùy chọn): Danh sách proxy để sử dụng cho các yê
 Cài đặt
 
 Clone repository:
-git clone https://github.com/your-username/neura-automation-bot.git
-cd neura-automation-bot
+git clone https://github.com/wangminhei/Neuraverse-Auto-Bot.git
+cd Neuraverse-Auto-Bot
 
 
 Cài đặt dependencies:
@@ -86,10 +86,11 @@ Gas: Đảm bảo ví của bạn có đủ ANKR trên Neura và ETH trên Sepol
 Proxy: Nếu sử dụng proxy, đảm bảo chúng hoạt động và đúng định dạng.
 An toàn: Không chia sẻ private key của bạn. Chỉ sử dụng bot trên testnet để tránh rủi ro tài chính.
 
-Donate
+Donate:
 Nếu bạn thấy dự án hữu ích, hãy ủng hộ tôi bằng cách donate qua các ví sau:
 
 EVM: 0x37583df7a477aa5c41bf2754044cca554a982933
+
 Solana: FrPT3q7LZhDFNr5KXTzLWnTP6Vs6xje8MB4Eo1ECciLN
 
 
@@ -102,3 +103,4 @@ Cộng đồng: Tham gia thảo luận Zalo https://zalo.me/g/wznoqm460 hoặc b
 
 Giấy phép
 Dự án được phát hành dưới MIT License.
+
