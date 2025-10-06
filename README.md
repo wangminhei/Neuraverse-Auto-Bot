@@ -1,155 +1,104 @@
-# Neuraverse Auto Bot
+Neura Automation Bot
+Giới thiệu
+Neura Automation Bot là một công cụ tự động hóa được viết bằng Node.js, hỗ trợ tương tác với mạng Neura testnet và Sepolia. Bot cung cấp các tính năng như swap token, bridge token giữa Neura và Sepolia, claim faucet, claim pulse, claim task, và chat với validator. Với giao diện dòng lệnh thân thiện và hỗ trợ proxy, bot giúp người dùng tối ưu hóa các hoạt động trên blockchain một cách dễ dàng và hiệu quả.
+Dự án này phù hợp cho các nhà phát triển, người thử nghiệm trên testnet, hoặc bất kỳ ai muốn tự động hóa các tác vụ liên quan đến Neura và Sepolia.
+Tính năng chính
 
-Automated token swap bot for Neura Protocol Testnet. This bot supports multiple wallets and can perform automatic back-and-forth swaps.
+Swap Token: Hỗ trợ swap token linh hoạt giữa các cặp token trên Neura testnet, với tùy chọn swap xuôi và ngược.
+Bridge Token: Chuyển token (ANKR/tANKR) giữa Neura và Sepolia.
+Claim Faucet: Tự động claim token từ faucet trên Sepolia.
+Claim Pulse và Task: Tự động thu thập pulse và claim các task có sẵn để nhận điểm thưởng.
+Chat với Validator: Gửi tin nhắn đến validator ngẫu nhiên trên Neura.
+Hỗ trợ Proxy: Sử dụng proxy từ file proxies.txt để tăng tính ẩn danh khi gọi API.
+Tự động hóa 24/7: Chạy các tác vụ theo chu kỳ 24 giờ với đồng hồ đếm ngược.
+Random Delay: Sử dụng độ trễ ngẫu nhiên (10–15 giây) cho các tác vụ swap để tránh bị phát hiện.
+Giao diện Logger: Cung cấp log rõ ràng với màu sắc và định dạng đẹp, hỗ trợ theo dõi tiến trình.
 
-## Features
+Yêu cầu
 
-- ✅ Multi-wallet support (handle multiple wallets simultaneously)
-- ✅ Auto token swap with retry mechanism
-- ✅ Automatic back-and-forth swaps (A→B then B→A)
-- ✅ Auto ERC20 token approval
-- ✅ Support for native token (ANKR) and ERC20 tokens
-- ✅ Automatic token list fetching from subgraph
+Node.js: Phiên bản 16.x hoặc cao hơn (đã kiểm tra với v22.14.0).
+Tệp .env: Cấu hình private key của ví.
+Tệp proxies.txt (tùy chọn): Danh sách proxy để sử dụng cho các yêu cầu API.
 
-## Requirements
+Cài đặt
 
-- Node.js version 16 or higher
-- npm or yarn
-- Wallet private key with ANKR balance on Neura Testnet
+Clone repository:
+git clone https://github.com/your-username/neura-automation-bot.git
+cd neura-automation-bot
 
-## Installation
 
-1. Clone this repository:
-```bash
-git clone https://github.com/vikitoshi/Neuraverse-Auto-Bot.git
-cd Neuraverse-Auto-Bot
-```
+Cài đặt dependencies:
+npm install ethers axios fs readline dotenv https-proxy-agent siwe
 
-2. Install dependencies:
-```bash
-npm install
-```
 
-3. Create `.env` file in the root folder:
-```bash
-cp .env.example .env
-```
+Tạo tệp .env:
 
-4. Edit `.env` file and add your wallet private keys:
-```env
-PRIVATE_KEY_1=your_private_key_here
-PRIVATE_KEY_2=your_private_key_here
-PRIVATE_KEY_3=your_private_key_here
-```
+Tạo file .env trong thư mục gốc của dự án.
+Thêm private key của ví theo định dạng sau:
+PRIVATE_KEY_1=your_private_key_1
+PRIVATE_KEY_2=your_private_key_2
 
-> **⚠️ IMPORTANT:** Never share your private keys with anyone!
 
-## Usage
+Mỗi private key đại diện cho một ví EVM để thực hiện các tác vụ.
 
-1. Run the bot:
-```bash
+
+(Tùy chọn) Tạo tệp proxies.txt:
+
+Tạo file proxies.txt trong thư mục gốc nếu bạn muốn sử dụng proxy.
+Thêm danh sách proxy theo định dạng (mỗi proxy trên một dòng):http://user:pass@ip:port
+http://user:pass@ip:port
+
+
+
+
+
+Cách sử dụng
+
+Chạy bot:
 node index.js
-```
 
-2. The bot will display a list of available tokens
 
-3. Select tokens to swap:
-   - Enter the number for the FROM token (token to swap)
-   - Enter the number for the TO token (destination token)
+Cấu hình tham số:
 
-4. Enter the amount of tokens to swap
+Bot sẽ yêu cầu bạn nhập các tham số qua dòng lệnh:
+Token để swap: Chọn số thứ tự của token FROM và TO từ danh sách token (nhập 0 để bỏ qua swap).
+Số lượng swap: Nhập số lượng token để swap (ví dụ: 0.1).
+Số lần swap: Nhập số lần lặp lại chu kỳ swap (ví dụ: 2).
+Số lượng bridge: Nhập số lượng token để bridge từ Sepolia sang Neura và ngược lại (nhập 0 để bỏ qua).
+Kích hoạt faucet: Nhập yes hoặc no để bật/tắt claim faucet.
+Kích hoạt task/pulse: Nhập yes hoặc no để bật/tắt claim task, pulse, và chat với validator.
 
-5. Enter how many times to perform the swap cycle
 
-6. The bot will start swapping automatically for all wallets
+Sau khi nhập, bot sẽ chạy tự động theo chu kỳ 24 giờ.
 
-## How It Works
 
-The bot will perform the following steps for each wallet:
+Theo dõi log:
 
-1. **Swap A → B**: Swap token A to token B
-2. **Wait 10 seconds**
-3. **Swap B → A**: Swap back token B to token A (using entire balance)
-4. **Wait 10 seconds**
-5. Repeat the cycle according to the specified number
+Bot hiển thị log chi tiết với màu sắc, bao gồm trạng thái của các tác vụ (swap, bridge, faucet, v.v.).
+Các lỗi được ghi lại rõ ràng để dễ dàng debug.
 
-## File Structure
 
-```
-Neuraverse-Auto-Bot/
-├── index.js          # Main bot file
-├── package.json      # Dependencies and scripts
-├── .env             # Configuration file (private keys)
-├── .env.example     # Template for .env file
-└── README.md        # Documentation
-```
 
-## Configuration
+Lưu ý
 
-### RPC Endpoint
-```javascript
-const NEURA_RPC = 'https://testnet.rpc.neuraprotocol.io/';
-```
+Testnet: Bot chỉ hoạt động trên Neura testnet và Sepolia. Đảm bảo bạn có đủ token testnet (ANKR, tANKR, ZTUSD, MOLLY) để thực hiện các tác vụ.
+Gas: Đảm bảo ví của bạn có đủ ANKR trên Neura và ETH trên Sepolia để trả phí gas.
+Proxy: Nếu sử dụng proxy, đảm bảo chúng hoạt động và đúng định dạng.
+An toàn: Không chia sẻ private key của bạn. Chỉ sử dụng bot trên testnet để tránh rủi ro tài chính.
 
-### Smart Contracts
-- **Swap Router**: `0x5AeFBA317BAba46EAF98Fd6f381d07673bcA6467`
-- **WANKR**: `0xbd833b6ecc30caeabf81db18bb0f1e00c6997e7a`
+Donate
+Nếu bạn thấy dự án hữu ích, hãy ủng hộ tôi bằng cách donate qua các ví sau:
 
-### Retry Settings
-- Max retries: 3 attempts
-- Delay between random retries: 10 - 15 seconds
-- Gas limit: 600,000
+EVM: 0x37583df7a477aa5c41bf2754044cca554a982933
+Solana: FrPT3q7LZhDFNr5KXTzLWnTP6Vs6xje8MB4Eo1ECciLN
 
-## Tips & Tricks
 
-1. **Native Token Balance**: Ensure wallet has enough ANKR for gas fees
-2. **Gas Reserve**: Bot automatically reserves 0.005 ANKR for gas fees
-3. **Multiple Wallets**: Add more wallets using `PRIVATE_KEY_N` format in `.env` file
-4. **Monitoring**: Watch the colorful logging output for each transaction status
 
-## Troubleshooting
+Mọi đóng góp đều được trân trọng và giúp tôi duy trì, phát triển dự án!
+Liên hệ
 
-### Error: "No private keys found"
-- Make sure `.env` file is created and contains private keys
-- Format must be: `PRIVATE_KEY_1=0x...`
+GitHub: wangminhei
+Cộng đồng: Tham gia thảo luận Zalo https://zalo.me/g/wznoqm460 hoặc báo lỗi qua Issues
 
-### Error: "Insufficient balance"
-- Ensure wallet has enough tokens to swap
-- Ensure there's ANKR balance for gas fees
-
-### Error: "Swap transaction reverted"
-- Check if the token pair has sufficient liquidity
-- Wait a moment and try again
-
-### Error: "Failed to fetch tokens"
-- Check internet connection
-- Subgraph API might be down, try again later
-
-## Security
-
-⚠️ **SECURITY WARNING:**
-- Never commit `.env` file to repository
-- Never share your private keys with anyone
-- Use a separate wallet for testing
-- This bot is for Testnet, DO NOT use on Mainnet without thorough code review
-
-## Important Links
-
-- **GitHub**: https://github.com/vikitoshi/Neuraverse-Auto-Bot.git
-- **Neura Explorer**: https://testnet.neuraprotocol.io/
-- **Neura RPC**: https://testnet.rpc.neuraprotocol.io/
-
-## Disclaimer
-
-This bot is created for educational purposes and testing on Testnet. Use at your own risk. The developer is not responsible for any loss of funds or other issues that may occur.
-
-## License
-
-MIT License
-
-## Contributing
-
-Pull requests and issue reports are welcome! Please open an issue first to discuss major changes.
-
----
-
+Giấy phép
+Dự án được phát hành dưới MIT License.
