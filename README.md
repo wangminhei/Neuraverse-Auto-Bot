@@ -1,7 +1,10 @@
 Neura Automation Bot
+
 Giới thiệu
+
 Neura Automation Bot là một công cụ tự động hóa được viết bằng Node.js, hỗ trợ tương tác với mạng Neura testnet và Sepolia. Bot cung cấp các tính năng như swap token, bridge token giữa Neura và Sepolia, claim faucet, claim pulse, claim task, và chat với validator. Với giao diện dòng lệnh thân thiện và hỗ trợ proxy, bot giúp người dùng tối ưu hóa các hoạt động trên blockchain một cách dễ dàng và hiệu quả.
 Dự án này phù hợp cho các nhà phát triển, người thử nghiệm trên testnet, hoặc bất kỳ ai muốn tự động hóa các tác vụ liên quan đến Neura và Sepolia.
+
 Tính năng chính
 
 Swap Token: Hỗ trợ swap token linh hoạt giữa các cặp token trên Neura testnet, với tùy chọn swap xuôi và ngược.
@@ -17,7 +20,9 @@ Giao diện Logger: Cung cấp log rõ ràng với màu sắc và định dạng
 Yêu cầu
 
 Node.js: Phiên bản 16.x hoặc cao hơn (đã kiểm tra với v22.14.0).
+
 Tệp .env: Cấu hình private key của ví.
+
 Tệp proxies.txt (tùy chọn): Danh sách proxy để sử dụng cho các yêu cầu API.
 
 Cài đặt
@@ -103,4 +108,5 @@ Cộng đồng: Tham gia thảo luận Zalo https://zalo.me/g/wznoqm460 hoặc b
 
 Giấy phép
 Dự án được phát hành dưới MIT License.
+
 
