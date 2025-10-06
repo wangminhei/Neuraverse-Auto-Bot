@@ -97,7 +97,7 @@ const NEURA_RPC = 'https://testnet.rpc.neuraprotocol.io/';
 
 ### Retry Settings
 - Max retries: 3 attempts
-- Delay between retries: 10 seconds
+- Delay between random retries: 10 - 15 seconds
 - Gas limit: 600,000
 
 ## Tips & Tricks
@@ -152,3 +152,4 @@ MIT License
 Pull requests and issue reports are welcome! Please open an issue first to discuss major changes.
 
 ---
+
