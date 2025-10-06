@@ -10,11 +10,11 @@ echo Checking dependencies...
 if exist "..\node_modules" (
     echo Using node_modules from parent directory...
     cd ..
-    CALL npm install
+    CALL npm install ethers axios fs readline dotenv https-proxy-agent siwe
     cd %~dp0
 ) else (
     echo Installing dependencies in current directory...
-    CALL npm install
+    CALL npm install ethers axios fs readline dotenv https-proxy-agent siwe
 )
 echo Dependencies installation completed!
 title Neuraverse
@@ -23,3 +23,4 @@ node index.js
 
 pause
 exit
+
