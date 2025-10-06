@@ -43,6 +43,7 @@ Cài đặt
 Clone repository:
 
 git clone https://github.com/wangminhei/Neuraverse-Auto-Bot.git
+
 cd Neuraverse-Auto-Bot
 
 
@@ -142,6 +143,7 @@ Cộng đồng: Tham gia thảo luận Zalo https://zalo.me/g/wznoqm460 hoặc b
 Giấy phép
 
 Dự án được phát hành dưới MIT License.
+
 
 
 
